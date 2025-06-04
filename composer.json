@@ -10,5 +10,12 @@
         "psr-4": {
             "Paeire\\LaravelSecretsManager\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Paeire\\LaravelSecretsManager\\SecretsServiceProvider"
+            ]
+        }
     }
 }

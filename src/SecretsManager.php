@@ -11,7 +11,7 @@ class SecretsManager
     public function __construct()
     {
         $this->client = new SecretsManagerClient([
-            'region' => config('secrets.region'),
+            'region' => getenv('AWS_DEFAULT_REGION') ?: 'us-east-1',
             'version' => 'latest',
         ]);
     }
@@ -19,11 +19,14 @@ class SecretsManager
     public function loadSecretsIntoConfig(string $secretId): void
     {
         try {
+            $secretId = getenv('AWS_SECRET_ID') ?: 'local/dev/env';
             $result = $this->client->getSecretValue([
                 'SecretId' => $secretId,
             ]);
 
             $secrets = json_decode($result['SecretString'], true);
+
+            //error_log('[SecretsManager] Secrets loaded: ' . json_encode($secrets)); // 👈 Add this
 
             foreach ($secrets as $key => $value) {
                 putenv("$key=$value");
@@ -32,7 +35,8 @@ class SecretsManager
                 config()->set("secrets.$key", $value);
             }
         } catch (\Exception $e) {
-            logger()->error("Failed to load secrets: " . $e->getMessage());
+            error_log("[SecretsManager] Failed to load secrets: " . $e->getMessage());        
         }
     }
+
 }
