@@ -1,0 +1,14 @@
+{
+    "name": "paeire/laravel-secrets-manager",
+    "description": "Connection to aws secrets manager",
+    "type": "library",
+    "require": {
+        "aws/aws-sdk-php": "^3.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Paeire\\LaravelSecretsManager\\": "src/"
+        }
+    }
+}
