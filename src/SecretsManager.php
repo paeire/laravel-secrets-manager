@@ -26,7 +26,6 @@ class SecretsManager
 
             $secrets = json_decode($result['SecretString'], true);
 
-            //error_log('[SecretsManager] Secrets loaded: ' . json_encode($secrets)); // 👈 Add this
 
             foreach ($secrets as $key => $value) {
                 putenv("$key=$value");
