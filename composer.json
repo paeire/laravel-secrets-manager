@@ -6,6 +6,13 @@
         "aws/aws-sdk-php": "^3.0"
     },
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergio Avalos",
+            "email": "sarmandoavz@gmail.com",
+            "role": "Developer"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Paeire\\LaravelSecretsManager\\": "src/"
